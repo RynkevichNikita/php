@@ -1,12 +1,69 @@
 <?php
 
-echo "Welcome to Fiery 0ctopus Server 1.0\n";
-
-//phpinfo();
-
-$link = mysqli_connect('mysql', 'octoRoot', 'password');
-if (!$link) {
-    die('Connection error: ' . mysqli_error());
+function squareFinder($a, $b) {
+    return $a * $b;
 }
-echo 'Connection success';
-mysqli_close($link);
+
+echo squareFinder(3, 7);
+
+echo "<br>";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// echo cal_days_in_month(CAL_GREGORIAN, 8, 2023); 
+// Функция написана правильно, но выдает ошибку. Все указывало на то, что расширение Calendar нету. Проверил, расширение есть и оно включено.
+// Поэтому пока будем довольствоваться этим:
+function daysInMonth($month, $year) {
+    if ($month == 1 || $month == 3 || $month == 5 || $month == 8 || $month == 10 || $month == 12) {
+        return "В этом месяце 31 день";
+    }
+    elseif ($month == 4 || $month == 6 || $month == 7 || $month == 9 || $month == 11) {
+        return "В этом месяце 30 дней";
+    }
+    else {
+        return "В этом месяце 28 дней в трех случаях из четырех";
+    }
+}
+
+echo daysInMonth(2, 2023);
+
+echo "<br>";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function body($a) {
+    return $a;
+}
+
+$some = body("Once told me");
+
+$theWorld = function () use($some) {
+    echo $some;
+};
+
+$theWorld();
+
+echo "<br>";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$now = time();
+
+$newYear = strtotime("2024-01-01");
+
+$countdown = round(($newYear - $now) / (60 * 60 * 24));
+
+echo "Осталось $countdown дней до Нового Года!";
+
+echo "<br>";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$date1=date_create("2023-07-15");
+
+$date2=date_create("2023-04-01");
+
+$diff=date_diff($date1,$date2);
+
+echo $diff->format('%a дней');
