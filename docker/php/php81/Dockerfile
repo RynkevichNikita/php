@@ -30,17 +30,20 @@ RUN apt-get update \
              libcurl4-openssl-dev \
              pkg-config \
              libldap2-dev \
-             libpq-dev
+             libpq-dev \
+             calendar
 
 RUN docker-php-ext-configure intl --enable-intl && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd && \
     docker-php-ext-install pdo \
-        mysqli pdo_mysql \
-        intl iconv mbstring \
-        zip pcntl \
-        exif opcache \
-    && docker-php-source delete
+      mysqli pdo_mysql \
+      intl iconv mbstring \
+      zip pcntl \
+      exif opcache \
+      bcmath calendar &&\
+      pecl install xdebug && docker-php-ext-enable xdebug \
+        && docker-php-source delete
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
