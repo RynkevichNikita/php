@@ -11,6 +11,8 @@
         <label for="luckyNumber">Выбери число от 0 до 9!</label><p></p>
         <input type="text" name="string" id="string">
         <label for="string">Введи слово на русском</label><p></p>
+        <input type="file" name="image" id="image">
+        <label for="image">Выбери изображение</label><p></p>
         <input type="submit">
     </fieldset>
 </form>
@@ -185,10 +187,21 @@ echo "<br>";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$img = "filesForFiles/1.jpeg";
-function image ($image) {
-    if (preg_match('/.jpeg$|.png$|.ico$|.gif$|.tiff$|.webp$|.eps$|.svg$|.psd$|.indd$|.cdr$|.raw$/', $image)) {
-        echo "<img src=$image>";
+// $image = "filesForFiles/1.jpeg";
+// function image ($image) {
+//     if (preg_match('/.jpeg$|.png$|.ico$|.gif$|.tiff$|.webp$|.eps$|.svg$|.psd$|.indd$|.cdr$|.raw$/', $image)) {
+        // echo "<img src=$image>";
+//     }
+// };
+// image($img);
+
+
+$exts = ['png', 'jpeg', 'ico', 'gif', 'tiff', 'webp', 'eps', 'svg', 'psd', 'indd', 'cdr', 'raw'];
+
+$img = pathinfo($_POST['image']);
+foreach ($exts as $ext) {
+    if ($img['extension'] == $ext) {
+        echo "Картинка валидная (скорее всего)";
+        break;
     }
-};
-image($img);
+}
