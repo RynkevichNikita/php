@@ -40,8 +40,8 @@ $numbers = str_split(fgets($streamReadNum));
 fclose($streamReadNum);
 $count = 0;
 foreach ($numbers as $number) {
-    global $count;
-    if ($_POST['luckyNumber'] == $number) {
+    $count;
+    if (isset($_POST['luckyNumber']) && $_POST['luckyNumber'] == $number) {
         $count++;
     }
 }
@@ -58,132 +58,134 @@ echo "<br>";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$letters = preg_split('//u', $_POST['string'], -1, PREG_SPLIT_NO_EMPTY);
-foreach ($letters as &$letter) {
-    if ($letter == "а") {
-        $letter = "a";
-        continue;
+if (isset($_POST['string'])) {
+    $letters = preg_split('//u', $_POST['string'], -1, PREG_SPLIT_NO_EMPTY);
+    foreach ($letters as &$letter) {
+        if ($letter == "а") {
+            $letter = "a";
+            continue;
+        }
+        if ($letter == "б") {
+            $letter = "b";
+            continue;
+        }
+        if ($letter == "в") {
+            $letter = "v";
+            continue;
+        }
+        if ($letter == "г") {
+            $letter = "g";
+            continue;
+        }
+        if ($letter == "д") {
+            $letter = "d";
+            continue;
+        }
+        if ($letter == "е" || $letter == "ё") {
+            $letter = "e";
+            continue;
+        }
+        if ($letter == "ж") {
+            $letter = "j";
+            continue;
+        }
+        if ($letter == "з") {
+            $letter = "z";
+            continue;
+        }
+        if ($letter == "и" || $letter == "й") {
+            $letter = "i";
+            continue;
+        }
+        if ($letter == "к") {
+            $letter = "k";
+            continue;
+        }
+        if ($letter == "л") {
+            $letter = "l";
+            continue;
+        }
+        if ($letter == "м") {
+            $letter = "m";
+            continue;
+        }
+        if ($letter == "н") {
+            $letter = "n";
+            continue;
+        }
+        if ($letter == "о") {
+            $letter = "o";
+            continue;
+        }
+        if ($letter == "п") {
+            $letter = "p";
+            continue;
+        }
+        if ($letter == "р") {
+            $letter = "r";
+            continue;
+        }
+        if ($letter == "с") {
+            $letter = "s";
+            continue;
+        }
+        if ($letter == "т") {
+            $letter = "t";
+            continue;
+        }
+        if ($letter == "у") {
+            $letter = "y";
+            continue;
+        }
+        if ($letter == "ф") {
+            $letter = "f";
+            continue;
+        }
+        if ($letter == "х") {
+            $letter = "h";
+            continue;
+        }
+        if ($letter == "ц") {
+            $letter = "c";
+            continue;
+        }
+        if ($letter == "ч") {
+            $letter = "ch";
+            continue;
+        }
+        if ($letter == "ш") {
+            $letter = "sh";
+            continue;
+        }
+        if ($letter == "щ") {
+            $letter = "sh'";
+            continue;
+        }
+        if ($letter == "ь" || $letter == "ъ") {
+            $letter = "'";
+            continue;
+        }
+        if ($letter == "ы") {
+            $letter = "y";
+            continue;
+        }
+        if ($letter == "э") {
+            $letter = "e";
+            continue;
+        }
+        if ($letter == "ю") {
+            $letter = "u";
+            continue;
+        }
+        if ($letter == "я") {
+            $letter = "ya";
+            continue;
+        }
     }
-    if ($letter == "б") {
-        $letter = "b";
-        continue;
-    }
-    if ($letter == "в") {
-        $letter = "v";
-        continue;
-    }
-    if ($letter == "г") {
-        $letter = "g";
-        continue;
-    }
-    if ($letter == "д") {
-        $letter = "d";
-        continue;
-    }
-    if ($letter == "е" || $letter == "ё") {
-        $letter = "e";
-        continue;
-    }
-    if ($letter == "ж") {
-        $letter = "j";
-        continue;
-    }
-    if ($letter == "з") {
-        $letter = "z";
-        continue;
-    }
-    if ($letter == "и" || $letter == "й") {
-        $letter = "i";
-        continue;
-    }
-    if ($letter == "к") {
-        $letter = "k";
-        continue;
-    }
-    if ($letter == "л") {
-        $letter = "l";
-        continue;
-    }
-    if ($letter == "м") {
-        $letter = "m";
-        continue;
-    }
-    if ($letter == "н") {
-        $letter = "n";
-        continue;
-    }
-    if ($letter == "о") {
-        $letter = "o";
-        continue;
-    }
-    if ($letter == "п") {
-        $letter = "p";
-        continue;
-    }
-    if ($letter == "р") {
-        $letter = "r";
-        continue;
-    }
-    if ($letter == "с") {
-        $letter = "s";
-        continue;
-    }
-    if ($letter == "т") {
-        $letter = "t";
-        continue;
-    }
-    if ($letter == "у") {
-        $letter = "y";
-        continue;
-    }
-    if ($letter == "ф") {
-        $letter = "f";
-        continue;
-    }
-    if ($letter == "х") {
-        $letter = "h";
-        continue;
-    }
-    if ($letter == "ц") {
-        $letter = "c";
-        continue;
-    }
-    if ($letter == "ч") {
-        $letter = "ch";
-        continue;
-    }
-    if ($letter == "ш") {
-        $letter = "sh";
-        continue;
-    }
-    if ($letter == "щ") {
-        $letter = "sh'";
-        continue;
-    }
-    if ($letter == "ь" || $letter == "ъ") {
-        $letter = "'";
-        continue;
-    }
-    if ($letter == "ы") {
-        $letter = "y";
-        continue;
-    }
-    if ($letter == "э") {
-        $letter = "e";
-        continue;
-    }
-    if ($letter == "ю") {
-        $letter = "u";
-        continue;
-    }
-    if ($letter == "я") {
-        $letter = "ya";
-        continue;
-    }
+    $string = implode('', $letters);
+    echo $string;
+    echo "<br>";
 }
-$string = implode('', $letters);
-echo $string;
-echo "<br>";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -198,10 +200,17 @@ echo "<br>";
 
 $exts = ['png', 'jpeg', 'ico', 'gif', 'tiff', 'webp', 'eps', 'svg', 'psd', 'indd', 'cdr', 'raw'];
 
-$img = pathinfo($_POST['image']);
-foreach ($exts as $ext) {
-    if ($img['extension'] == $ext) {
-        echo "Картинка валидная (скорее всего)";
-        break;
-    }
+// $img = !isset($_POST['image'])?? pathinfo($_POST['image']);
+// foreach ($exts as $ext) {
+//     if (isset($_POST['image']) && $img['extension'] == $ext) {
+//         echo "Картинка валидная (скорее всего)";
+//         break;
+//     }
+// }
+
+$img2 = (!isset($_POST['image'])) ?: pathinfo($_POST['image'], PATHINFO_EXTENSION);
+if (isset($_POST['image']) && in_array($img2, $exts)) {
+    echo "Картинка валидная (скорее всего)";
+} else if (isset($_POST['image']) && !in_array($img2, $exts)) {
+    echo "Что-то пошло не так";
 }
