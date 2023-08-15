@@ -5,4 +5,5 @@
 // include_once "loop.php";
 // include_once "forms.php";
 // include_once "cookies.php";
-include_once "files.php";
+// include_once "files.php";
+include_once "class.php";
