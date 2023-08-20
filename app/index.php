@@ -7,4 +7,5 @@
 // include_once "cookies.php";
 // include_once "files.php";
 // include_once "class.php";
-include_once "extends.php";
+// include_once "extends.php";
+include_once "static.php";
