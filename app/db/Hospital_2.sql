@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mysql
--- Время создания: Авг 27 2023 г., 16:52
+-- Время создания: Авг 31 2023 г., 12:50
 -- Версия сервера: 8.0.33
 -- Версия PHP: 8.1.17
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `Hospital`
+-- База данных: `Hospital_2`
 --
 
 -- --------------------------------------------------------
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Appointments` (
   `doctor_name_id` int NOT NULL,
-  `patient_name_id` int NOT NULL,
-  `date` date NOT NULL,
-  `cabinet` int NOT NULL
+  `patient_name_id` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `cabinet` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -42,8 +42,8 @@ CREATE TABLE `Appointments` (
 
 CREATE TABLE `Doctors` (
   `id` int NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `specialization` varchar(56) NOT NULL
+  `name` varchar(56) DEFAULT NULL,
+  `specialization` varchar(56) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -54,21 +54,8 @@ CREATE TABLE `Doctors` (
 
 CREATE TABLE `History_of_deseases` (
   `history_of_deseases_id` int NOT NULL,
-  `desease` varchar(56) NOT NULL,
-  `date_of _sickness` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `Patients card`
---
-
-CREATE TABLE `Patients card` (
-  `id` int NOT NULL,
-  `age` int NOT NULL,
-  `gender` varchar(6) NOT NULL,
-  `history of deseases` int NOT NULL
+  `desease` varchar(56) DEFAULT NULL,
+  `date_of_sickness` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -79,7 +66,20 @@ CREATE TABLE `Patients card` (
 
 CREATE TABLE `Patients` (
   `id` int NOT NULL,
-  `name` varchar(32) NOT NULL
+  `name` varchar(56) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Patients card`
+--
+
+CREATE TABLE `Patients card` (
+  `id` int NOT NULL,
+  `age` int DEFAULT NULL,
+  `gender` varchar(6) DEFAULT NULL,
+  `history_of_deseases` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `Patients` (
 --
 ALTER TABLE `Appointments`
   ADD PRIMARY KEY (`doctor_name_id`),
-  ADD KEY `patient_id` (`patient_name_id`);
+  ADD KEY `patient_name_id` (`patient_name_id`);
 
 --
 -- Индексы таблицы `Doctors`
@@ -106,17 +106,17 @@ ALTER TABLE `History_of_deseases`
   ADD PRIMARY KEY (`history_of_deseases_id`);
 
 --
--- Индексы таблицы `Patients card`
---
-ALTER TABLE `Patients card`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `history_of_deseases` (`history of deseases`);
-
---
 -- Индексы таблицы `Patients`
 --
 ALTER TABLE `Patients`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `Patients card`
+--
+ALTER TABLE `Patients card`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `history_of_deseases` (`history_of_deseases`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -141,15 +141,15 @@ ALTER TABLE `History_of_deseases`
   MODIFY `history_of_deseases_id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `Patients card`
---
-ALTER TABLE `Patients card`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `Patients`
 --
 ALTER TABLE `Patients`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `Patients card`
+--
+ALTER TABLE `Patients card`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
@@ -160,20 +160,15 @@ ALTER TABLE `Patients`
 -- Ограничения внешнего ключа таблицы `Appointments`
 --
 ALTER TABLE `Appointments`
-  ADD CONSTRAINT `doctor_id` FOREIGN KEY (`doctor_name_id`) REFERENCES `Doctors` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `patient_id` FOREIGN KEY (`patient_name_id`) REFERENCES `Patients` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Appointments_ibfk_1` FOREIGN KEY (`doctor_name_id`) REFERENCES `Doctors` (`id`),
+  ADD CONSTRAINT `Appointments_ibfk_2` FOREIGN KEY (`patient_name_id`) REFERENCES `Patients` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `Patients card`
 --
 ALTER TABLE `Patients card`
-  ADD CONSTRAINT `history_of_deseases` FOREIGN KEY (`history of deseases`) REFERENCES `History_of_deseases` (`history_of_deseases_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Ограничения внешнего ключа таблицы `Patients`
---
-ALTER TABLE `Patients`
-  ADD CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `Patients card` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Patients card_ibfk_1` FOREIGN KEY (`id`) REFERENCES `Patients` (`id`),
+  ADD CONSTRAINT `Patients card_ibfk_2` FOREIGN KEY (`history_of_deseases`) REFERENCES `History_of_deseases` (`history_of_deseases_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
