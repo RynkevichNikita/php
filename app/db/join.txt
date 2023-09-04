@@ -1,0 +1,28 @@
+1
+# or * instead "Doctors.name, Patients.name"
+SELECT Doctors.name, Patients.name FROM Doctors
+    INNER JOIN Appointments
+        ON Doctors.id = Appointments.doctor_name_id
+    INNER JOIN Patients
+        ON Patients.id = Appointments.patient_name_id;
+
+2
+
+SELECT Client.name, Mechanics.name, Warehouse.items FROM Client
+    INNER JOIN Car
+        ON Client.id = Car.car_id
+    INNER JOIN Mechanics
+        ON Mechanics.id = Car.mechanic_id
+    INNER JOIN Warehouse
+        ON Warehouse.id = Car.items_for_repair;
+
+4
+
+SELECT * FROM Doctors ORDER BY name;
+SELECT * FROM Patients ORDER BY name;
+
+5
+
+SELECT Doctors.name, COUNT(Appointments.doctor_name_id) FROM Doctors 
+    LEFT JOIN Appointments
+    ON Doctors.id = Appointments.doctor_name_id;
