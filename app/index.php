@@ -8,4 +8,6 @@
 // include_once "files.php";
 // include_once "class.php";
 // include_once "extends.php";
-include_once "static.php";
+// include_once "static.php";
+include_once "pdo/toDo.php";
+// include_once "pdo/work.php";
