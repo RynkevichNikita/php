@@ -7,7 +7,7 @@
 
 <?php
 
-include_once 'toDoFiles/brain.php';
+use PDOcrud\PDOcrud;
 
 ?>
 
@@ -39,7 +39,7 @@ include_once 'toDoFiles/brain.php';
 
         <?php
 
-        $toDoTable = new ToDoTable;
+        $toDoTable = new PDOcrud();
         $toDoTable->table();
 
         ?>

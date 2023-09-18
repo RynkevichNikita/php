@@ -1,8 +1,13 @@
 <?php
 
-include_once 'brain.php';
+require '../../vendor/autoload.php';
 
-$deleteToDo = new DeleteThing;
+use PDOcrud\PDOcrud;
+use TmsLogger\TmsLogger;
+
+$deleteToDo = new PDOcrud;
 $deleteToDo->delete();
+$logs = new TmsLogger;
+$logs->log();
 
 ?>

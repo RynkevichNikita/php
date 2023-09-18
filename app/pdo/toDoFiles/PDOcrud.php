@@ -1,14 +1,16 @@
 <?php
 
-class PDOroute {
+namespace PDOcrud;
+
+use PDO;
+use PDOException;
+
+class PDOcrud {
     protected $pdo;
 
     function __construct() {
         $this->pdo = new PDO('mysql:host=mysql;port=3306;dbname=to_do;charset=utf8mb4','root','rootpassword');
     }
-}
-
-class CreateThing extends PDOroute {
     public function insert() {
 
         if (!empty($_POST['newTask'])) {
@@ -32,9 +34,6 @@ class CreateThing extends PDOroute {
             echo "You didn't insert anything!";
         }
     }
-}
-
-class UpdateThing extends PDOroute {
     public function update() {
 
         if (!empty($_POST['idTask']) && !empty($_POST['updateTask'])) {
@@ -59,9 +58,6 @@ class UpdateThing extends PDOroute {
             echo "Something missing!";
         }
     }
-}
-
-class DeleteThing extends PDOroute {
     public function delete() {
         if (!empty($_GET["id"])) {
 
@@ -85,9 +81,6 @@ class DeleteThing extends PDOroute {
             echo "Something wrong!";
         }
     }
-}
-
-class ToDoTable extends PDOroute {
     public function table() {
 
         $toDoList = $this->pdo->query("SELECT * FROM todos");

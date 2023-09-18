@@ -1,8 +1,11 @@
 <?php
 
-include_once 'brain.php';
+require '../../vendor/autoload.php';
 
-$insertToDo = new CreateThing;
+use PDOcrud\PDOcrud;
+use TmsLogger\TmsLogger;
+
+$insertToDo = new PDOcrud();
 $insertToDo->insert();
-
-?>
+$logs = new TmsLogger();
+$logs->log();

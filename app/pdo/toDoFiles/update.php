@@ -1,8 +1,13 @@
 <?php
 
-include_once 'brain.php';
+require '../../vendor/autoload.php';
 
-$updateToDo = new UpdateThing;
+use PDOcrud\PDOcrud;
+use TmsLogger\TmsLogger;
+
+$updateToDo = new PDOcrud;
 $updateToDo->update();
+$logs = new TmsLogger;
+$logs->log();
 
 ?>

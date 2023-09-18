@@ -1,4 +1,7 @@
 <?php
+
+require 'vendor/autoload.php';
+
 // include_once "functions.php";
 // include_once "arrays.php";
 // include_once "regular.php";
@@ -11,3 +14,5 @@
 // include_once "static.php";
 include_once "pdo/toDo.php";
 // include_once "pdo/work.php";
+// include_once "loggerapp-main/index.php";
+// include_once "pdo/index.php";

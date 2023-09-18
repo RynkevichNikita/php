@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+            "ConnectionPDO\\": "loggerapp-main/app/data/",
+            "PDOcrud\\": "pdo/toDoFiles/",
+            "TmsLogger\\": "pdo/toDoFiles/"
+        }
+    }
+}
